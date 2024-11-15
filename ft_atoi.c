@@ -6,7 +6,7 @@
 /*   By: hkonte <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:58:21 by hkonte            #+#    #+#             */
-/*   Updated: 2024/11/15 14:40:07 by hkonte           ###   ########.fr       */
+/*   Updated: 2024/11/15 14:55:23 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_is_space(char c)
 	return (c == '\r' || c == '\v' || c == '\f');
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *nptr)
 {
 	int	result;
 	int	i;

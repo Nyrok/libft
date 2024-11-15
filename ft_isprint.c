@@ -6,20 +6,11 @@
 /*   By: hkonte <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:47:39 by hkonte            #+#    #+#             */
-/*   Updated: 2024/11/15 11:33:40 by hkonte           ###   ########.fr       */
+/*   Updated: 2024/11/15 15:00:56 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(char *str)
+int	ft_isprint(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] < 32 || str[i] > 126)
-			return (0);
-		i++;
-	}
-	return (1);
+	return (c >= 32 && c <= 126);
 }

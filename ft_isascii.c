@@ -6,20 +6,11 @@
 /*   By: hkonte <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:47:39 by hkonte            #+#    #+#             */
-/*   Updated: 2024/11/15 11:33:14 by hkonte           ###   ########.fr       */
+/*   Updated: 2024/11/15 14:58:59 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(char *str)
+int	ft_isascii(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] < 0 || str[i] > 127)
-			return (0);
-		i++;
-	}
-	return (1);
+	return (c >= 0 && c <= 127);
 }

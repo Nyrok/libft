@@ -6,11 +6,11 @@
 /*   By: hkonte <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:35:32 by hkonte            #+#    #+#             */
-/*   Updated: 2024/11/15 14:39:29 by hkonte           ###   ########.fr       */
+/*   Updated: 2024/11/15 14:55:56 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(char c)
+int	ft_isalnum(int c)
 {
 	return (ft_isdigit(c) || ft_isalpha(c));
 }
