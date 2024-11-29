@@ -18,7 +18,7 @@ void	*ft_memmove(void *dest, void *src, size_t n)
 	void	*tmp;
 
 	i = 0;
-	while ((char *)(dest + i) != (void *)0 && (char *)(src + i) != (void *)0 && i < n)
+	while (dest + i != NULL && src + i != NULL && i < n)
 	{
 		tmp = (char *)(src + i);
 		*(char *)(dest + i) = *(char *)tmp;

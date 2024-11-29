@@ -14,7 +14,7 @@
 
 char	*ft_strnstr(char *str, char *to_find, size_t len)
 {
-	int	valid;
+	int		valid;
 	size_t	i;
 	size_t	k;
 	size_t	n;

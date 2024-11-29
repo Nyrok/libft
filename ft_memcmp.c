@@ -19,7 +19,7 @@ int	ft_memcmp(void *s1, void *s2, size_t n)
 	i = 0;
 	if (n == 0)
 		return (0);
-	while (*(char *)(s1 + i) == *(char *)(s2 + i) && (char *)(s1 + i) != (void *)0)
+	while (*(char *)(s1 + i) == *(char *)(s2 + i) && (char *)(s1 + i) != NULL)
 	{
 		if (++i >= n)
 		{
