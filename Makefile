@@ -5,14 +5,14 @@ CC = cc
 CCFLAGS = -Wall -Wextra -Werror -g3
 
 INCLUDE =	libft.h
-LIB =		libft.a
+NAME =		libft.a
 FILES = ${wildcard ft_*.c}
 OBJS = ${FILES:.c=.o}
 
-all:	${LIB}
+all:	${NAME}
 
-${LIB}:	${OBJS}
-	ar rcs ${LIB} ${OBJS}
+${NAME}:	${OBJS}
+	ar rcs ${NAME} ${OBJS}
 
 .c.o:
 	${CC} ${CCFLAGS} -I ${INCLUDE} -c $< -o $@
@@ -21,7 +21,7 @@ clean:
 	rm -f ${OBJS}
 
 fclean:	clean
-	rm -f ${LIB}
+	rm -f ${NAME}
 
 re:	fclean all
 

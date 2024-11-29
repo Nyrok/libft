@@ -33,7 +33,7 @@ int				ft_strlen(char *str);
 int				ft_strncmp(char *s1, char *s2, unsigned int n);
 char			*ft_strnstr(char *str, char *to_find, size_t len);
 char			*ft_strrchr(char *str, char c);
-char			*ft_tolower(char *str);
-char			*ft_toupper(char *str);
+char			ft_tolower(char c);
+char			ft_toupper(char c);
 
 #endif
