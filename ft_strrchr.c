@@ -14,16 +14,16 @@
 
 char	*ft_strrchr(char *str, char c)
 {
-	unsigned int	i;
 	char			*occ;
 
-	i = 0;
-	occ = (void *)0;
-	while (str[i])
+	occ = NULL;
+	while (*str)
 	{
-		if (str[i] == c)
-			occ = &c;
-		i++;
+		if (*str == c)
+			occ = str;
+		str++;
 	}
+	if (c == '\0')
+		return (str);
 	return (occ);
 }
