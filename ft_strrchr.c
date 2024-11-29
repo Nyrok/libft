@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strrchr(char *str, char c)
+#include "libft.h"
+
+char	*ft_strrchr(char *str, char c)
 {
 	unsigned int	i;
 	char			*occ;

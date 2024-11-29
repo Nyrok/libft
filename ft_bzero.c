@@ -6,18 +6,20 @@
 /*   By: hkonte <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 14:30:57 by hkonte            #+#    #+#             */
-/*   Updated: 2024/11/15 14:31:57 by hkonte           ###   ########.fr       */
+/*   Updated: 2024/11/29 13:16:48 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i])
+	while (i < n)
 	{
-		s[i] = '\0';
+		*(char *)(s + i) = '\0';
 		i++;
 	}
 }

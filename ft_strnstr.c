@@ -10,18 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strnstr(char *str, char *to_find, size_t len)
 {
 	int	valid;
-	int	i;
-	int	k;
-	int	n;
+	size_t	i;
+	size_t	k;
+	size_t	n;
 
 	n = ft_strlen(to_find);
 	if (n == 0)
 		return (str);
 	i = -1;
-	while (str[++i] != '\0' && ft_strlen(str) >= n && i < n)
+	while (str[++i] != '\0' && (size_t)ft_strlen(str) >= n && i < n && i < len)
 	{
 		k = -1;
 		valid = 1;

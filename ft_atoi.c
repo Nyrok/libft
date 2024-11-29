@@ -6,9 +6,11 @@
 /*   By: hkonte <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:58:21 by hkonte            #+#    #+#             */
-/*   Updated: 2024/11/15 14:55:23 by hkonte           ###   ########.fr       */
+/*   Updated: 2024/11/29 13:15:20 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 static int	ft_is_sign(char c)
 {
@@ -32,17 +34,17 @@ int	ft_atoi(const char *nptr)
 	result = 0;
 	i = 0;
 	p = 1;
-	while (str[i] != '\0' && ft_is_space(str[i]))
+	while (nptr[i] != '\0' && ft_is_space(nptr[i]))
 		i++;
-	while (str[i] != '\0' && ft_is_sign(str[i]))
+	while (nptr[i] != '\0' && ft_is_sign(nptr[i]))
 	{
-		if (str[i] == '-')
+		if (nptr[i] == '-')
 			p *= -1;
 		i++;
 	}
-	while (str[i] != '\0')
+	while (nptr[i] != '\0')
 	{
-		val = (int)(str[i] - '0');
+		val = (int)(nptr[i] - '0');
 		if (val < 0 || val > 9)
 			return (p * result);
 		result = result * 10 + val;
