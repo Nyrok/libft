@@ -36,7 +36,7 @@ int	ft_atoi(const char *nptr)
 	p = 1;
 	while (nptr[i] != '\0' && ft_is_space(nptr[i]))
 		i++;
-	while (nptr[i] != '\0' && ft_is_sign(nptr[i]))
+	if (ft_is_sign(nptr[i]))
 	{
 		if (nptr[i] == '-')
 			p *= -1;
