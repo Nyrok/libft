@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_strrchr(char *str, char c)
+char	*ft_strrchr(const char *str, const char c)
 {
 	char			*occ;
 
@@ -20,10 +20,10 @@ char	*ft_strrchr(char *str, char c)
 	while (*str)
 	{
 		if (*str == c)
-			occ = str;
+			occ = (char *)str;
 		str++;
 	}
 	if (c == '\0')
-		return (str);
+		return ((char *)str);
 	return (occ);
 }
