@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/03 14:18:40 by hkonte            #+#    #+#             */
-/*   Updated: 2024/11/15 14:40:32 by hkonte           ###   ########.fr       */
+/*   Created: 2024/11/15 14:30:57 by hkonte            #+#    #+#             */
+/*   Updated: 2024/11/29 13:16:48 by hkonte           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	unsigned int	i;
-	unsigned int	n;
+	void	*ptr;
 
-	n = ft_strlen(dest);
-	i = 0;
-	while (src[i] != '\0' && n + i + 1 < size)
+	if (!nmemb || !size)
 	{
-		dest[n + i] = src[i];
-		i++;
+		ptr = malloc(1);
+		return (ptr);
 	}
-	dest[n + i] = '\0';
-	if (n <= size)
-		return (n + ft_strlen(src));
-	return (size + ft_strlen(src));
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
 }
