@@ -4,7 +4,6 @@ CC = cc
 # Compiler flags
 CCFLAGS = -Wall -Wextra -Werror -g3
 
-INCLUDE =	libft.h
 NAME =		libft.a
 FILES = ${wildcard ft_*.c}
 OBJS = ${FILES:.c=.o}
@@ -15,7 +14,7 @@ ${NAME}:	${OBJS}
 	ar rcs ${NAME} ${OBJS}
 
 .c.o:
-	${CC} ${CCFLAGS} -I ${INCLUDE} -c $< -o $@
+	${CC} ${CCFLAGS} -I. -c $< -o $@
 
 clean:
 	rm -f ${OBJS}
