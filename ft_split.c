@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-int	ft_count(const char *s, const char c)
+static int	ft_count(const char *s, const char c)
 {
 	int	i;
 	int	new_word;
@@ -37,27 +37,28 @@ int	ft_count(const char *s, const char c)
 	return (count);
 }
 
-char	**ft_alloc(int count)
+static char	**ft_alloc(int count)
 {
 	char	**result;
 	int		i;
+	int		j;
 
-	result = malloc(1 + count * sizeof(char *));
+	result = ft_calloc(1 + count, sizeof(char *));
 	if (!result)
-	{
-		result = malloc(1);
-		result[0] = NULL;
-		return (result);
-	}
+		return (NULL);
 	i = 0;
 	while (i < count)
 	{
-		result[i] = malloc(32 * sizeof(char));
+		result[i] = ft_calloc(1024, sizeof(char));
 		if (!result[i])
 		{
-			result = malloc(1);
-			result[0] = NULL;
-			return (result);
+			j = 0;
+			while (j < i)
+			{
+				free(result[j]);
+				j++;
+			}
+			return (NULL);
 		}
 		i++;
 	}
@@ -65,33 +66,32 @@ char	**ft_alloc(int count)
 	return (result);
 }
 
-void	ft_split_exec(const char *s, const char c, char **result)
+static void	ft_split_exec(const char *s, const char c, char **result)
 {
 	int	i;
 	int	j;
 	int	new_word;
-	int count;
+	int	count;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	new_word = 1;
 	count = 0;
-	while (s[i])
+	new_word = 1;
+	while (s[++i])
 	{
 		if (s[i] == c && !new_word)
 		{
 			new_word = 1;
-			result[count][j] = '\0';
+			result[count++][j] = '\0';
 			j = 0;
-			count++;
 		}
 		else if (s[i] != c)
 		{
 			new_word = 0;
-			result[count][j] = s[i];
-			j++;
+			result[count][j++] = s[i];
+			if (s[i + 1] == '\0')
+				result[count][j] = '\0';
 		}
-		i++;
 	}
 }
 
@@ -99,9 +99,17 @@ char	**ft_split(const char *s, const char c)
 {
 	char	**result;
 
-	result = ft_alloc(ft_count(s, c));
-	if (!result[0])
+	if (s == NULL)
+		return (NULL);
+	if (ft_strlen(s) == 0)
+	{
+		result = malloc(sizeof(char *));
+		result[0] = NULL;
 		return (result);
+	}
+	result = ft_alloc(ft_count(s, c));
+	if (!result)
+		return (NULL);
 	ft_split_exec(s, c, result);
 	return (result);
 }
