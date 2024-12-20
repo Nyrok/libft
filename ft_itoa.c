@@ -12,22 +12,45 @@
 
 #include "libft.h"
 
-static char	*ft_strrev(char *str)
+static int	ft_intsize(int n)
 {
-	char	*result;
+	long int	val;
+	int			count;
+	int			is_negative;
+
+	count = 0;
+	is_negative = n < 0;
+	if (is_negative)
+		val = -(long int)n;
+	else
+		val = (long int)n;
+	while (val > 0)
+	{
+		val /= 10;
+		count++;
+	}
+	return (1 + (n == 0) + count + is_negative);
+}
+
+char	*ft_strrev(char *str)
+{
 	int		i;
 	int		n;
+	char	temp;
 
-	result = ft_strdup(str);
+	if (!str)
+		return (NULL);
 	i = 0;
 	n = ft_strlen(str) - 1;
-	while (str[n])
+	while (i < n)
 	{
-		result[i++] = str[n--];
+		temp = str[i];
+		str[i] = str[n];
+		str[n] = temp;
+		i++;
+		n--;
 	}
-	result[i] = '\0';
-	free(str);
-	return (result);
+	return (str);
 }
 
 char	*ft_itoa(int n)
@@ -42,7 +65,7 @@ char	*ft_itoa(int n)
 		val = -(long int)n;
 	else
 		val = (long int)n;
-	result = ft_calloc(11 + is_negative, sizeof(char));
+	result = ft_calloc(ft_intsize(n), sizeof(char));
 	if (!result)
 		return (NULL);
 	i = 0;
