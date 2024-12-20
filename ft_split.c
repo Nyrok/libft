@@ -12,112 +12,74 @@
 
 #include "libft.h"
 
-static int	ft_word_length(const char *s, const char c)
+static int	ft_count(char const *s, char c)
 {
-	int	count;
 	int	i;
+	int	cmpt;
 
-	count = 0;
 	i = 0;
-	while (s && s[i] != c)
-	{
-		count++;
+	cmpt = 0;
+	if (s[0] != c && s[0] != '\0')
+		cmpt = 1;
+	while (s[i] == c && s[i])
 		i++;
-	}
-	return (count);
-}
-
-static int	ft_count(const char *s, const char c)
-{
-	int	i;
-	int	new_word;
-	int	count;
-
-	i = 0;
-	new_word = 1;
-	count = 0;
 	while (s[i])
 	{
-		if (s[i] == c && !new_word)
-		{
-			new_word = 1;
-		}
-		else if (s[i] != c && new_word)
-		{
-			new_word = 0;
-			count++;
-		}
-		i++;
+		if (s[i] != c && s[i] && i != 0)
+			cmpt++;
+		while (s[i] != c && s[i])
+			i++;
+		while (s[i] == c && s[i])
+			i++;
 	}
-	return (count);
+	return (cmpt);
 }
 
-static char	**ft_alloc(int count)
+static char	*add_word(char const *s, int i, int k)
 {
-	char	**result;
-	int		i;
+	char	*res;
 	int		j;
 
-	result = ft_calloc(1 + count, sizeof(char *));
-	if (!result)
+	res = malloc((k + 1) * sizeof(char));
+	if (!res)
 		return (NULL);
-	i = 0;
-	while (i < count)
-	{
-		result[i] = ft_calloc(1024, sizeof(char));
-		if (!result[i])
-		{
-			j = -1;
-			while (++j < i)
-				free(result[j]);
-			free(result);
-			return (NULL);
-		}
-		i++;
-	}
-	result[i] = NULL;
-	return (result);
-}
-
-static void	ft_split_exec(const char *s, const char c, char **result)
-{
-	int	i;
-	int	j;
-	int	new_word;
-	int	count;
-
-	i = -1;
 	j = 0;
-	count = 0;
-	new_word = 1;
-	while (s[++i])
+	while (k > 0)
 	{
-		if (s[i] == c && !new_word)
-		{
-			new_word = 1;
-			result[count++][j] = '\0';
-			j = 0;
-		}
-		else if (s[i] != c)
-		{
-			new_word = 0;
-			result[count][j++] = s[i];
-			if (s[i + 1] == '\0')
-				result[count][j] = '\0';
-		}
+		res[j] = s[i];
+		j++;
+		i++;
+		k--;
 	}
+	res[j] = '\0';
+	return (res);
 }
 
-char	**ft_split(const char *s, const char c)
+char	**ft_split(char const *s, char c)
 {
-	char	**result;
+	char	**res;
+	int		i;
+	int		j;
+	int		k;
 
-	if (s == NULL || ft_strlen(s) == 0)
+	i = 0;
+	j = 0;
+	while (s[i] == c && s[i])
+		i++;
+	res = malloc((ft_count(s, c) + 1) * sizeof(char *));
+	if (!res)
 		return (NULL);
-	result = ft_alloc(ft_count(s, c));
-	if (!result)
-		return (NULL);
-	ft_split_exec(s, c, result);
-	(void)ft_word_length;
-	return (result);
+	while (s[i] && j < ft_count(s, c))
+	{
+		while (s[i] == c && s[i])
+			i++;
+		k = 0;
+		while (s[i + k] != c && s[i + k])
+			k++;
+		res[j] = add_word(s, i, k);
+		i += k;
+		j++;
+	}
+	res[j] = NULL;
+	return (res);
 }
