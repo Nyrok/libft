@@ -32,7 +32,7 @@ static int	ft_intsize(int n)
 	return (1 + (n == 0) + count + is_negative);
 }
 
-char	*ft_strrev(char *str)
+static char	*ft_strrev(char *str)
 {
 	int		i;
 	int		n;
